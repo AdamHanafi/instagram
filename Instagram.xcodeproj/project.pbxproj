@@ -15,6 +15,8 @@
 		BE3A3F3F20F4095D0073BCDB /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = BE3A3F3E20F4095D0073BCDB /* main.m */; };
 		BE3A3F4720F40FBD0073BCDB /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BE3A3F4620F40FBD0073BCDB /* LoginViewController.m */; };
 		BE3A3F4A20F40FFE0073BCDB /* FeedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BE3A3F4920F40FFE0073BCDB /* FeedViewController.m */; };
+		BE67574920F554B700F278F6 /* PostCollectionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BE67574820F554B700F278F6 /* PostCollectionCell.m */; };
+		BE67574C20F55AE900F278F6 /* ProfileCollectionReusableView.m in Sources */ = {isa = PBXBuildFile; fileRef = BE67574B20F55AE900F278F6 /* ProfileCollectionReusableView.m */; };
 		BED02DE320F41D5A004DFB98 /* ComposeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BED02DE220F41D5A004DFB98 /* ComposeViewController.m */; };
 		BED02DE620F42254004DFB98 /* ProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BED02DE520F42254004DFB98 /* ProfileViewController.m */; };
 		BEE0F2CA20F429A200196328 /* Post.m in Sources */ = {isa = PBXBuildFile; fileRef = BEE0F2C920F429A200196328 /* Post.m */; };
@@ -36,6 +38,10 @@
 		BE3A3F4620F40FBD0073BCDB /* LoginViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
 		BE3A3F4820F40FFE0073BCDB /* FeedViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FeedViewController.h; sourceTree = "<group>"; };
 		BE3A3F4920F40FFE0073BCDB /* FeedViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FeedViewController.m; sourceTree = "<group>"; };
+		BE67574720F554B700F278F6 /* PostCollectionCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PostCollectionCell.h; sourceTree = "<group>"; };
+		BE67574820F554B700F278F6 /* PostCollectionCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PostCollectionCell.m; sourceTree = "<group>"; };
+		BE67574A20F55AE900F278F6 /* ProfileCollectionReusableView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ProfileCollectionReusableView.h; sourceTree = "<group>"; };
+		BE67574B20F55AE900F278F6 /* ProfileCollectionReusableView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ProfileCollectionReusableView.m; sourceTree = "<group>"; };
 		BED02DE120F41D5A004DFB98 /* ComposeViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ComposeViewController.h; sourceTree = "<group>"; };
 		BED02DE220F41D5A004DFB98 /* ComposeViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ComposeViewController.m; sourceTree = "<group>"; };
 		BED02DE420F42254004DFB98 /* ProfileViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ProfileViewController.h; sourceTree = "<group>"; };
@@ -116,6 +122,10 @@
 				BEE0F2C920F429A200196328 /* Post.m */,
 				BEE0F2D020F42D7400196328 /* PostCell.h */,
 				BEE0F2D120F42D7400196328 /* PostCell.m */,
+				BE67574720F554B700F278F6 /* PostCollectionCell.h */,
+				BE67574820F554B700F278F6 /* PostCollectionCell.m */,
+				BE67574A20F55AE900F278F6 /* ProfileCollectionReusableView.h */,
+				BE67574B20F55AE900F278F6 /* ProfileCollectionReusableView.m */,
 			);
 			path = Instagram;
 			sourceTree = "<group>";
@@ -240,6 +250,8 @@
 				BE3A3F3F20F4095D0073BCDB /* main.m in Sources */,
 				BE3A3F3120F4095C0073BCDB /* AppDelegate.m in Sources */,
 				BE3A3F4A20F40FFE0073BCDB /* FeedViewController.m in Sources */,
+				BE67574C20F55AE900F278F6 /* ProfileCollectionReusableView.m in Sources */,
+				BE67574920F554B700F278F6 /* PostCollectionCell.m in Sources */,
 				BEE0F2D220F42D7400196328 /* PostCell.m in Sources */,
 				BED02DE320F41D5A004DFB98 /* ComposeViewController.m in Sources */,
 				BED02DE620F42254004DFB98 /* ProfileViewController.m in Sources */,

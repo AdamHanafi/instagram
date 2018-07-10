@@ -52,7 +52,7 @@
     UIImage *editedImage = info[UIImagePickerControllerEditedImage];
     
     // Do something with the images (based on your use case)
-    editedImage = [self resizeImage:originalImage withSize:CGSizeMake(100, 100)];
+    //editedImage = [self resizeImage:originalImage withSize:CGSizeMake(100, 100)];
     [self.picturePostView setImage:editedImage];
     
     // Dismiss UIImagePickerController to go back to your original view controller
@@ -78,7 +78,7 @@
 }
 - (IBAction)clickedPost:(id)sender {
     [Post postUserImage:self.picturePostView.image withCaption:self.captionContent.text withCompletion:^(BOOL succeeded, NSError * _Nullable error) {
-        NSLog(@"Posted!");
+        NSLog(@"Posting...");
         if(error){
             NSLog(@"Error posting picture: %@", error.localizedDescription);
         }

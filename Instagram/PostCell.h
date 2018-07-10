@@ -16,5 +16,10 @@
 @property (strong, nonatomic) Post *post;
 @property (weak, nonatomic) IBOutlet PFImageView *postImageView;
 @property (weak, nonatomic) IBOutlet UILabel *postCaptionLabel;
+@property (weak, nonatomic) IBOutlet PFImageView *postProfilePicView;
+@property (weak, nonatomic) IBOutlet UILabel *usernameLabel;
+@property (weak, nonatomic) IBOutlet UIButton *bookmarkButton;
+@property (weak, nonatomic) IBOutlet UIButton *heartButton;
+@property (weak, nonatomic) IBOutlet UILabel *numLikesLabel;
 
 @end

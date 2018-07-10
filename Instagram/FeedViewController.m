@@ -16,7 +16,7 @@
 @interface FeedViewController () <UITableViewDelegate, UITableViewDataSource>
 @property (strong, nonatomic) NSArray* posts;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
-
+@property (strong, nonatomic) UIRefreshControl *refreshControl;
 @end
 
 @implementation FeedViewController
@@ -24,9 +24,15 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    self.tableView.delegate = self;
+    self.tableView.dataSource = self;
+    
     [self fetchPosts];
     NSLog(@"*************%lu***********", (unsigned long)self.posts.count);
-    [self.tableView reloadData];
+    self.refreshControl = [[UIRefreshControl alloc] init];
+    [self.refreshControl addTarget:self action:@selector(fetchPosts) forControlEvents:UIControlEventValueChanged];
+    [self.tableView insertSubview:self.refreshControl atIndex:0];
+
 }
 
 - (void)didReceiveMemoryWarning {
@@ -46,22 +52,32 @@
         appDelegate.window.rootViewController = loginViewController;
     }];
     //[self dismissViewControllerAnimated:YES completion:nil];
-
 }
 
 - (void)fetchPosts {
     // construct query
     PFQuery *query = [PFQuery queryWithClassName:@"Post"];
     //[query whereKey:@"likesCount" greaterThan:@100];
+
     query.limit = 20;
-    
+    [query orderByDescending:@"createdAt"];
+    [query includeKey:@"author"];
     // fetch data asynchronously
     [query findObjectsInBackgroundWithBlock:^(NSArray *posts, NSError *error) {
         if (posts != nil) {
             // do something with the array of object returned by the call
             self.posts = posts;
+            NSLog(@"Posts assigned to array");
+            NSLog(@"%@", self.posts);
+            NSLog(@"%lu", self.posts.count);
+            [self.refreshControl endRefreshing];
+            [self.tableView reloadData];
+            // Tell the refreshControl to stop spinning
+
         } else {
             NSLog(@"%@", error.localizedDescription);
+            [self.refreshControl endRefreshing];
+
         }
     }];
 }
@@ -90,6 +106,7 @@
 
 - (void)viewDidAppear:(BOOL)animated {
     [self fetchPosts];
+    NSLog(@"*************%lu***********", (unsigned long)self.posts.count);
 }
 
 
