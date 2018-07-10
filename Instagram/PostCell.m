@@ -18,7 +18,7 @@
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
     [super setSelected:selected animated:animated];
-
+    
     // Configure the view for the selected state
 }
 
@@ -26,21 +26,25 @@
     _post = post;
     self.postImageView.file = post.image;
     [self.postImageView loadInBackground];
-    self.postCaptionLabel.text = post[@"caption"];
+    self.postCaptionLabel.text = [NSString stringWithFormat:@"%@ %@", post.author.username, post.caption];
     self.numLikesLabel.text = [NSString stringWithFormat:@"%@ likes", post[@"likeCount"]];
     self.usernameLabel.text = post.author.username;
-
+    self.heartButton.selected = false;
+    self.bookmarkButton.selected = false;
     //self.postProfilePicView.file = poster.image;
     //[self.postProfilePicView loadInBackground];
+    self.postProfilePicView.layer.cornerRadius = 25;
 }
 
 - (IBAction)clickedHeart:(id)sender {
-    if(self.heartButton.highlighted){
-        self.heartButton.highlighted = false;
-        //self.post.likeCount = *self.post.likeCount + *[NSNumber numberWithInteger:1];
-    } else {
-        self.heartButton.highlighted = true;
-        //self.post.likeCount = *self.post.likeCount - *[NSNumber numberWithInteger:1];
+    if(self.heartButton.selected){
+        self.heartButton.selected = false;
+        self.post.likeCount = [NSNumber numberWithInteger:([self.post.likeCount intValue] - 1)];
+        [self.post saveInBackground];
+    } else if(!self.heartButton.selected) {
+        self.heartButton.selected = true;
+        self.post.likeCount = [NSNumber numberWithInteger:([self.post.likeCount intValue] + 1)];
+        [self.post saveInBackground];
     }
     self.numLikesLabel.text = [NSString stringWithFormat:@"%@ likes", self.post.likeCount];
 
@@ -50,12 +54,11 @@
 - (IBAction)clickedSend:(id)sender {
 }
 - (IBAction)clickedBookmark:(id)sender {
-    if(self.bookmarkButton.highlighted){
-        self.bookmarkButton.highlighted = false;
-    } else {
-        self.bookmarkButton.highlighted = true;
+    if(self.bookmarkButton.selected){
+        self.bookmarkButton.selected = false;
+    } else if(!self.bookmarkButton.selected){
+        self.bookmarkButton.selected = true;
     }
-    
 }
 
 

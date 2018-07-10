@@ -7,6 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Post.h"
+#import <ParseUI/ParseUI.h>
+#import <Parse/Parse.h>
 
 @interface ProfileCollectionReusableView : UICollectionReusableView
 

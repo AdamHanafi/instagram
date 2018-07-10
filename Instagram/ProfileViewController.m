@@ -9,9 +9,11 @@
 #import "ProfileViewController.h"
 #import "Parse.h"
 #import "PostCollectionCell.h"
+#import "ProfileCollectionReusableView.h"
+#import <ParseUI/ParseUI.h>
+#import "Post.h"
 
 @interface ProfileViewController () <UICollectionViewDelegate, UICollectionViewDataSource>
-
 @property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
 @property (strong, nonatomic) NSArray *posts;
 @end
@@ -24,8 +26,7 @@
     // self.numPostsLabel =
     self.collectionView.delegate = self;
     self.collectionView.dataSource = self;
-    
-    
+    [self fetchPosts];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -50,7 +51,6 @@
             NSLog(@"%@", self.posts);
             NSLog(@"%lu", self.posts.count);
             [self.collectionView reloadData];
-            // Tell the refreshControl to stop spinning
             
         } else {
             NSLog(@"%@", error.localizedDescription);
@@ -74,11 +74,19 @@
 - (nonnull __kindof UICollectionViewCell *)collectionView:(nonnull UICollectionView *)collectionView cellForItemAtIndexPath:(nonnull NSIndexPath *)indexPath {
     PostCollectionCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"PostCollectionCell" forIndexPath:indexPath];
     cell.post = self.posts[indexPath.item];
+    cell.postImageView.file = cell.post.image;
+    [cell.postImageView loadInBackground];
+    cell.postImageView.layer.cornerRadius = 50;
     return cell;
 }
 
 - (NSInteger)collectionView:(nonnull UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
     return self.posts.count;
+}
+
+- (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath{
+    ProfileCollectionReusableView *header = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"ProfileCollectionReusableView" forIndexPath:indexPath];
+    return header;
 }
 
 @end

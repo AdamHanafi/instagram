@@ -8,6 +8,6 @@
 
 #import "ProfileCollectionReusableView.h"
 
-@implementation ProfileCollectionReusableView
+@implementation ProfileCollectionReusableView : UICollectionReusableView
 
 @end
