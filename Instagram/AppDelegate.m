@@ -7,7 +7,7 @@
 //
 
 #import "AppDelegate.h"
-
+#import "Parse.h"
 @interface AppDelegate ()
 
 @end
@@ -17,6 +17,23 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
+    
+    ParseClientConfiguration *config = [ParseClientConfiguration   configurationWithBlock:^(id<ParseMutableClientConfiguration> configuration) {
+        
+        configuration.applicationId = @"rileyInsta";
+        configuration.clientKey = @"rileyIStheCOOLEST";
+        configuration.server = @"https://rileyinstagram.herokuapp.com/parse";
+    }];
+    
+    [Parse initializeWithConfiguration:config];
+    
+    if (PFUser.currentUser) {
+        UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+        
+        self.window.rootViewController = [storyboard instantiateViewControllerWithIdentifier:@"FeedNavController"];
+    }
+
+    
     return YES;
 }
 
