@@ -12,6 +12,7 @@
 #import "ProfileCollectionReusableView.h"
 #import <ParseUI/ParseUI.h>
 #import "Post.h"
+#import "DetailViewController.h"
 
 @interface ProfileViewController () <UICollectionViewDelegate, UICollectionViewDataSource>
 @property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
@@ -41,6 +42,7 @@
     
     query.limit = 20;
     [query orderByDescending:@"createdAt"];
+    [query includeKey:@"author"];
     [query whereKey:@"author" equalTo:[PFUser currentUser]];
     // fetch data asynchronously
     [query findObjectsInBackgroundWithBlock:^(NSArray *posts, NSError *error) {
@@ -61,15 +63,22 @@
 
 
 
-/*
+
 #pragma mark - Navigation
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
+    UICollectionViewCell  *tappedCell = sender;
+    NSIndexPath *indexPath = [self.collectionView indexPathForCell:tappedCell];
+    Post *post = self.posts[indexPath.item];
+    NSLog(@"%d", [[segue destinationViewController] isKindOfClass:[DetailViewController class]]);
+    DetailViewController *detailViewController = [segue destinationViewController];
+    
+    detailViewController.post = post;
 }
-*/
+
 
 - (nonnull __kindof UICollectionViewCell *)collectionView:(nonnull UICollectionView *)collectionView cellForItemAtIndexPath:(nonnull NSIndexPath *)indexPath {
     PostCollectionCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"PostCollectionCell" forIndexPath:indexPath];

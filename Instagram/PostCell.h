@@ -21,5 +21,6 @@
 @property (weak, nonatomic) IBOutlet UIButton *bookmarkButton;
 @property (weak, nonatomic) IBOutlet UIButton *heartButton;
 @property (weak, nonatomic) IBOutlet UILabel *numLikesLabel;
+@property (weak, nonatomic) IBOutlet UILabel *timeAgoLabel;
 
 @end
