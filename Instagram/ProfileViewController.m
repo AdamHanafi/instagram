@@ -76,7 +76,7 @@
     cell.post = self.posts[indexPath.item];
     cell.postImageView.file = cell.post.image;
     [cell.postImageView loadInBackground];
-    cell.postImageView.layer.cornerRadius = 50;
+    //cell.postImageView.layer.cornerRadius = cell.postImageView.frame.size.width/2;
     return cell;
 }
 
@@ -86,6 +86,7 @@
 
 - (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath{
     ProfileCollectionReusableView *header = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"ProfileCollectionReusableView" forIndexPath:indexPath];
+    
     return header;
 }
 
