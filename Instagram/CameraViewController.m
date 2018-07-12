@@ -19,6 +19,7 @@
 @property (nonatomic) AVCapturePhotoOutput *stillImageOutput;
 @property (nonatomic) AVCaptureVideoPreviewLayer *videoPreviewLayer;
 @property (weak, nonatomic) IBOutlet UITextView *captionContent;
+@property (nonatomic) BOOL frontCamera;
 @end
 
 @implementation CameraViewController
@@ -28,6 +29,7 @@
     // Do any additional setup after loading the view.
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(dismissKeyboard)];
     [self.view addGestureRecognizer:tap];
+    self.frontCamera = false;
 }
 
 -(void)dismissKeyboard {
@@ -53,11 +55,24 @@
 }
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:YES];
+    [self loadCamera];
+    
+}
+
+- (void)loadCamera{
     self.session = [AVCaptureSession new];
     self.session.sessionPreset = AVCaptureSessionPresetPhoto;
-    AVCaptureDevice *backCamera = [AVCaptureDevice defaultDeviceWithMediaType:AVMediaTypeVideo];
+    AVCaptureDevice *captureDevice;
+    //AVCaptureDevice *backCamera = [AVCaptureDevice defaultDeviceWithMediaType:AVMediaTypeVideo];
+    if(self.frontCamera){
+        captureDevice = [self frontFacingCameraIfAvailable];
+    } else {
+        captureDevice = [self backCamera];
+        
+    }
+    
     NSError *error;
-    AVCaptureDeviceInput *input = [AVCaptureDeviceInput deviceInputWithDevice:backCamera error:&error];
+    AVCaptureDeviceInput *input = [AVCaptureDeviceInput deviceInputWithDevice:captureDevice error:&error];
     if (error) {
         NSLog(@"%@", error.localizedDescription);
     }
@@ -76,11 +91,59 @@
                 [self.previewView.layer addSublayer:self.videoPreviewLayer];
                 [self.session startRunning];
             }
-            
         }
     }
-    
 }
+
+- (AVCaptureDevice *)backCamera
+{
+    //  look at all the video devices and get the first one that's on the front
+    NSArray *videoDevices = [AVCaptureDevice devicesWithMediaType:AVMediaTypeVideo];
+    AVCaptureDevice *captureDevice = nil;
+    for (AVCaptureDevice *device in videoDevices)
+    {
+        if (device.position == AVCaptureDevicePositionBack)
+        {
+            captureDevice = device;
+            break;
+        }
+    }
+    //  couldn't find one on the front, so just get the default video device.
+    if ( ! captureDevice)
+    {
+        captureDevice = [AVCaptureDevice defaultDeviceWithMediaType:AVMediaTypeVideo];
+    }
+    return captureDevice;
+}
+- (AVCaptureDevice *)frontFacingCameraIfAvailable
+{
+    //  look at all the video devices and get the first one that's on the front
+    NSArray *videoDevices = [AVCaptureDevice devicesWithMediaType:AVMediaTypeVideo];
+    AVCaptureDevice *captureDevice = nil;
+    for (AVCaptureDevice *device in videoDevices)
+    {
+        if (device.position == AVCaptureDevicePositionFront)
+        {
+            captureDevice = device;
+            break;
+        }
+    }
+    //  couldn't find one on the front, so just get the default video device.
+    if ( ! captureDevice)
+    {
+        captureDevice = [AVCaptureDevice defaultDeviceWithMediaType:AVMediaTypeVideo];
+    }
+    return captureDevice;
+}
+
+
+- (IBAction)cameraSwitch:(id)sender {
+    [self.session stopRunning];
+    self.frontCamera = !self.frontCamera;
+    [self loadCamera];
+}
+
+
 - (IBAction)goToCameraRoll:(id)sender {
     [self dismissViewControllerAnimated:YES completion:nil];
 }
@@ -91,7 +154,9 @@
 }
 
 - (IBAction)clickedPost:(id)sender {
-    [Post postUserImage:self.captureImageView.image withCaption:self.captionContent.text withCompletion:^(BOOL succeeded, NSError * _Nullable error) {
+    UIImage *editedImage = [self fixOrientationOfImage:self.captureImageView.image];
+    
+    [Post postUserImage:editedImage withCaption:self.captionContent.text withCompletion:^(BOOL succeeded, NSError * _Nullable error) {
         NSLog(@"Posting...");
         if(error){
             NSLog(@"Error posting picture: %@", error.localizedDescription);
@@ -100,10 +165,91 @@
             NSLog(@"Picture successfully posted!");
         }
     }];
-    //[self dismissViewControllerAnimated:YES completion:nil];
-    
-    [self.tabBarController setSelectedIndex:0];
+    [self dismissViewControllerAnimated:YES completion:nil];
+   // UIViewController *parentView = self.sender;
+    //[parentView.tabBarController setSelectedIndex:0];
 }
+
+- (UIImage *)fixOrientationOfImage:(UIImage *)image {
+    
+    // No-op if the orientation is already correct
+    if (image.imageOrientation == UIImageOrientationUp) return image;
+    
+    // We need to calculate the proper transformation to make the image upright.
+    // We do it in 2 steps: Rotate if Left/Right/Down, and then flip if Mirrored.
+    CGAffineTransform transform = CGAffineTransformIdentity;
+    
+    switch (image.imageOrientation) {
+        case UIImageOrientationDown:
+        case UIImageOrientationDownMirrored:
+            transform = CGAffineTransformTranslate(transform, image.size.width, image.size.height);
+            transform = CGAffineTransformRotate(transform, M_PI);
+            break;
+            
+        case UIImageOrientationLeft:
+        case UIImageOrientationLeftMirrored:
+            transform = CGAffineTransformTranslate(transform, image.size.width, 0);
+            transform = CGAffineTransformRotate(transform, M_PI_2);
+            break;
+            
+        case UIImageOrientationRight:
+        case UIImageOrientationRightMirrored:
+            transform = CGAffineTransformTranslate(transform, 0, image.size.height);
+            transform = CGAffineTransformRotate(transform, -M_PI_2);
+            break;
+        case UIImageOrientationUp:
+        case UIImageOrientationUpMirrored:
+            break;
+    }
+    
+    switch (image.imageOrientation) {
+        case UIImageOrientationUpMirrored:
+        case UIImageOrientationDownMirrored:
+            transform = CGAffineTransformTranslate(transform, image.size.width, 0);
+            transform = CGAffineTransformScale(transform, -1, 1);
+            break;
+            
+        case UIImageOrientationLeftMirrored:
+        case UIImageOrientationRightMirrored:
+            transform = CGAffineTransformTranslate(transform, image.size.height, 0);
+            transform = CGAffineTransformScale(transform, -1, 1);
+            break;
+        case UIImageOrientationUp:
+        case UIImageOrientationDown:
+        case UIImageOrientationLeft:
+        case UIImageOrientationRight:
+            break;
+    }
+    
+    // Now we draw the underlying CGImage into a new context, applying the transform
+    // calculated above.
+    CGContextRef ctx = CGBitmapContextCreate(NULL, image.size.width, image.size.height,
+                                             CGImageGetBitsPerComponent(image.CGImage), 0,
+                                             CGImageGetColorSpace(image.CGImage),
+                                             CGImageGetBitmapInfo(image.CGImage));
+    CGContextConcatCTM(ctx, transform);
+    switch (image.imageOrientation) {
+        case UIImageOrientationLeft:
+        case UIImageOrientationLeftMirrored:
+        case UIImageOrientationRight:
+        case UIImageOrientationRightMirrored:
+            // Grr...
+            CGContextDrawImage(ctx, CGRectMake(0,0,image.size.height,image.size.width), image.CGImage);
+            break;
+            
+        default:
+            CGContextDrawImage(ctx, CGRectMake(0,0,image.size.width,image.size.height), image.CGImage);
+            break;
+    }
+    
+    // And now we just create a new UIImage from the drawing context
+    CGImageRef cgimg = CGBitmapContextCreateImage(ctx);
+    UIImage *img = [UIImage imageWithCGImage:cgimg];
+    CGContextRelease(ctx);
+    CGImageRelease(cgimg);
+    return img;
+}
+
 
 
 /*

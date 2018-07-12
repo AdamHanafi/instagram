@@ -60,7 +60,7 @@
                                         </connections>
                                     </button>
                                 </subviews>
-                                <color key="backgroundColor" red="0.0" green="0.67450980390000004" blue="0.92941176469999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="backgroundColor" red="1" green="0.16078431369999999" blue="0.29411764709999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="42" id="qvP-lx-Uws"/>
                                     <constraint firstAttribute="width" constant="240" id="v3F-Eo-VcI"/>
@@ -91,7 +91,7 @@
                                         </connections>
                                     </button>
                                 </subviews>
-                                <color key="backgroundColor" red="0.0" green="0.67450980390000004" blue="0.92941176469999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="backgroundColor" red="1" green="0.16078431369999999" blue="0.29411764709999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="240" id="jhs-UA-2Qr"/>
                                     <constraint firstAttribute="height" constant="42" id="sG2-FZ-F8J"/>
@@ -125,7 +125,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-60" y="33.733133433283363"/>
+            <point key="canvasLocation" x="-303" y="261"/>
         </scene>
         <!--Feed-->
         <scene sceneID="zOC-6Q-NeK">
@@ -147,7 +147,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ko1-Uk-saf" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1562" y="651"/>
+            <point key="canvasLocation" x="1510" y="989"/>
         </scene>
         <!--My Profile-->
         <scene sceneID="i8P-C8-XSN">
@@ -656,6 +656,7 @@
                                                 <constraint firstItem="IfG-D4-K1e" firstAttribute="leading" secondItem="aah-mS-teU" secondAttribute="leading" id="z13-Kd-VQZ"/>
                                             </constraints>
                                         </tableViewCellContentView>
+                                        <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                         <connections>
                                             <outlet property="bookmarkButton" destination="yYM-3q-SHs" id="wWA-Pp-YQJ"/>
                                             <outlet property="heartButton" destination="Cuy-T5-6Kc" id="6h7-Va-7ZB"/>
@@ -685,11 +686,7 @@
                                 <action selector="clickedLogout:" destination="2zJ-uJ-poH" id="Ngf-Gi-WC0"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" title="Item" image="insta_camera_btn" id="z04-Ib-Hek">
-                            <connections>
-                                <segue destination="QTr-NM-kaX" kind="presentation" identifier="composeSegue" id="FOb-Tl-3Iv"/>
-                            </connections>
-                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" title="Item" image="insta_camera_btn" id="z04-Ib-Hek"/>
                     </navigationItem>
                     <connections>
                         <outlet property="tableView" destination="XWE-9q-bUE" id="eTz-cr-pdv"/>
@@ -697,7 +694,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="de5-61-TNh" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2360.8000000000002" y="650.82458770614699"/>
+            <point key="canvasLocation" x="2361" y="988"/>
         </scene>
         <!--Item-->
         <scene sceneID="72A-DJ-boI">
@@ -708,7 +705,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="image_placeholder" translatesAutoresizingMaskIntoConstraints="NO" id="0Xp-vw-edO">
-                                <rect key="frame" x="12" y="41" width="135" height="127"/>
+                                <rect key="frame" x="12" y="41" width="127" height="127"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xYJ-kl-We2">
@@ -726,7 +723,7 @@
                                 </connections>
                             </view>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="a6M-AE-2MQ">
-                                <rect key="frame" x="162" y="41" width="200" height="88"/>
+                                <rect key="frame" x="147" y="41" width="215" height="88"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -741,11 +738,22 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MWJ-Xl-pHS">
-                                <rect key="frame" x="162" y="137" width="200" height="30"/>
+                                <rect key="frame" x="147" y="137" width="215" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Post" backgroundImage="insta-background-bar"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="30"/>
+                                <state key="normal" title="Post" backgroundImage="insta-login-background">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
                                 <connections>
                                     <action selector="clickedPost:" destination="O7s-ov-Cwp" eventType="touchUpInside" id="lNh-Tl-erT"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="J26-fm-m3T">
+                                <rect key="frame" x="12" y="534" width="46" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button"/>
+                                <connections>
+                                    <action selector="cameraSwitch:" destination="O7s-ov-Cwp" eventType="touchUpInside" id="jQI-Vr-jkw"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -766,7 +774,7 @@
                     </connections>
                 </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="45.600000000000001" y="909.89505247376314"/>
+            <point key="canvasLocation" x="2361" y="262"/>
         </scene>
         <!--Item-->
         <scene sceneID="YMq-cj-3Gi">
@@ -777,11 +785,11 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="image_placeholder" translatesAutoresizingMaskIntoConstraints="NO" id="wcY-tx-qof">
-                                <rect key="frame" x="12" y="48" width="135" height="127"/>
+                                <rect key="frame" x="12" y="48" width="127" height="127"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="3ls-4d-fa6">
-                                <rect key="frame" x="155" y="48" width="204" height="88"/>
+                                <rect key="frame" x="147" y="48" width="212" height="88"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -801,10 +809,13 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7QL-lu-S0d">
-                                <rect key="frame" x="155" y="145" width="204" height="30"/>
+                                <rect key="frame" x="147" y="145" width="212" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="1" green="0.024088541670000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <state key="normal" title="Post" backgroundImage="insta-login-background"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="30"/>
+                                <state key="normal" title="Post" backgroundImage="insta-login-background">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
                                 <connections>
                                     <action selector="clickedPost:" destination="G8f-ke-rQj" eventType="touchUpInside" id="bYE-bb-T5f"/>
                                 </connections>
@@ -838,7 +849,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Wzj-cH-iqq" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <tapGestureRecognizer id="D6f-rK-maa"/>
             </objects>
-            <point key="canvasLocation" x="760.79999999999995" y="909.89505247376314"/>
+            <point key="canvasLocation" x="1510" y="263"/>
         </scene>
         <!--Compose View Controller-->
         <scene sceneID="52l-St-4W8">
@@ -965,7 +976,7 @@
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="kfl-9s-ahu" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="721" y="34"/>
+            <point key="canvasLocation" x="612" y="260"/>
         </scene>
     </scenes>
     <resources>
@@ -976,7 +987,6 @@
         <image name="heart" width="240" height="240"/>
         <image name="heart-fill" width="240" height="240"/>
         <image name="image_placeholder" width="375" height="375"/>
-        <image name="insta-background-bar" width="626" height="626"/>
         <image name="insta-login-background" width="225" height="225"/>
         <image name="insta-login-logo" width="440" height="142"/>
         <image name="insta_camera_btn" width="25" height="25"/>
