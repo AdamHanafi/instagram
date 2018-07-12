@@ -12,6 +12,7 @@
 #import "LoginViewController.h"
 #import "Post.h"
 #import "PostCell.h"
+#import "MBProgressHUD.h"
 
 @interface FeedViewController () <UITableViewDelegate, UITableViewDataSource>
 @property (strong, nonatomic) NSArray* posts;
@@ -27,6 +28,7 @@
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     
+    [MBProgressHUD showHUDAddedTo:self.view animated:true];
     [self fetchPosts];
     NSLog(@"*************%lu***********", (unsigned long)self.posts.count);
     self.refreshControl = [[UIRefreshControl alloc] init];
@@ -68,9 +70,8 @@
             // do something with the array of object returned by the call
             self.posts = posts;
             NSLog(@"Posts assigned to array");
-            NSLog(@"%@", self.posts);
-            NSLog(@"%lu", self.posts.count);
             [self.refreshControl endRefreshing];
+            [MBProgressHUD hideHUDForView:self.view animated:true];
             [self.tableView reloadData];
             // Tell the refreshControl to stop spinning
 
@@ -106,7 +107,6 @@
 
 - (void)viewDidAppear:(BOOL)animated {
     [self fetchPosts];
-    NSLog(@"*************%lu***********", (unsigned long)self.posts.count);
 }
 
 

@@ -7,6 +7,7 @@
 //
 
 #import "DetailViewController.h"
+#import "DateTools.h"
 
 @interface DetailViewController ()
 @property (weak, nonatomic) IBOutlet UILabel *postUserLabel;
@@ -16,6 +17,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *postCommentLabel;
 @property (weak, nonatomic) IBOutlet UIButton *heartButton;
 @property (weak, nonatomic) IBOutlet UIButton *bookmarkButton;
+@property (weak, nonatomic) IBOutlet UILabel *timeAgoLabel;
 
 @end
 
@@ -34,10 +36,13 @@
     self.bookmarkButton.selected = false;
     //self.postProfilePicView.file = poster.image;
     //[self.postProfilePicView loadInBackground];
-    self.postUserImageView.layer.cornerRadius = 25;
-    // Scrolling Functionality
-
+    self.postUserImageView.layer.cornerRadius = self.postUserImageView.frame.size.width/2;
+    NSDate *date = self.post.createdAt;
+    NSString *ago = [date shortTimeAgoSinceNow];
+    self.timeAgoLabel.text = [NSString stringWithFormat:@"%@", ago];
+    
 }
+
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
@@ -48,13 +53,15 @@
         self.heartButton.selected = false;
         self.post.likeCount = [NSNumber numberWithInteger:([self.post.likeCount intValue] - 1)];
         [self.post saveInBackground];
+        
     } else if(!self.heartButton.selected) {
         self.heartButton.selected = true;
         self.post.likeCount = [NSNumber numberWithInteger:([self.post.likeCount intValue] + 1)];
         [self.post saveInBackground];
+        
     }
     self.postLikeLabel.text = [NSString stringWithFormat:@"%@ likes", self.post.likeCount];
-
+ 
 }
 - (IBAction)clickedBookmark:(id)sender {
     if(self.bookmarkButton.selected){

@@ -14,7 +14,7 @@
 #import "Post.h"
 #import "DetailViewController.h"
 
-@interface ProfileViewController () <UICollectionViewDelegate, UICollectionViewDataSource>
+@interface ProfileViewController () <UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout>
 @property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
 @property (strong, nonatomic) NSArray *posts;
 @end
@@ -27,6 +27,12 @@
     // self.numPostsLabel =
     self.collectionView.delegate = self;
     self.collectionView.dataSource = self;
+    self.navigationItem.title = [PFUser currentUser].username;
+    CGFloat itemWidth = self.collectionView.frame.size.width / 3;
+    UICollectionViewFlowLayout *layout = (UICollectionViewFlowLayout *)self.collectionView.collectionViewLayout;
+    layout.itemSize = CGSizeMake(itemWidth, itemWidth);
+   // NSLog(@"%d", self.collectionView.frame.size.width / 3); 
+    //self.collectionView
     [self fetchPosts];
 }
 
@@ -49,14 +55,11 @@
         if (posts != nil) {
             // do something with the array of object returned by the call
             self.posts = posts;
-            NSLog(@"Posts assigned to array");
-            NSLog(@"%@", self.posts);
-            NSLog(@"%lu", self.posts.count);
+            NSLog(@"Posts assigned to array");  
             [self.collectionView reloadData];
             
         } else {
             NSLog(@"%@", error.localizedDescription);
-            
         }
     }];
 }
@@ -85,7 +88,9 @@
     cell.post = self.posts[indexPath.item];
     cell.postImageView.file = cell.post.image;
     [cell.postImageView loadInBackground];
-    //cell.postImageView.layer.cornerRadius = cell.postImageView.frame.size.width/2;
+    //cell.postImageView.frame.size.width = self.collectionView.frame.size.width / 3;
+    //cell.postImageView.frame.size.height = self.collectionView.frame.size.width / 3;
+
     return cell;
 }
 
@@ -95,9 +100,14 @@
 
 - (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath{
     ProfileCollectionReusableView *header = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"ProfileCollectionReusableView" forIndexPath:indexPath];
-    
+    header.numPostsLabel.text = [NSString stringWithFormat:@"%lu", self.posts.count];
+    header.profilePicView.layer.cornerRadius = header.profilePicView.frame.size.width/2;
     return header;
 }
 
+-(void)viewWillAppear:(BOOL)animated{
+    self.navigationController.title = [PFUser currentUser].username;
+
+}
 @end
 

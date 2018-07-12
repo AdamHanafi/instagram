@@ -16,6 +16,9 @@
 		BE3A3F4720F40FBD0073BCDB /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BE3A3F4620F40FBD0073BCDB /* LoginViewController.m */; };
 		BE3A3F4A20F40FFE0073BCDB /* FeedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BE3A3F4920F40FFE0073BCDB /* FeedViewController.m */; };
 		BE62559220F687B9007049F3 /* DetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BE62559120F687B9007049F3 /* DetailViewController.m */; };
+		BE6255BF20F7DD0E007049F3 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BE6255BE20F7DD0E007049F3 /* AVFoundation.framework */; };
+		BE6255C220F7EB85007049F3 /* CameraViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BE6255C120F7EB85007049F3 /* CameraViewController.m */; };
+		BE6255C520F7F683007049F3 /* RollViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BE6255C420F7F683007049F3 /* RollViewController.m */; };
 		BE67574920F554B700F278F6 /* PostCollectionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BE67574820F554B700F278F6 /* PostCollectionCell.m */; };
 		BE67574C20F55AE900F278F6 /* ProfileCollectionReusableView.m in Sources */ = {isa = PBXBuildFile; fileRef = BE67574B20F55AE900F278F6 /* ProfileCollectionReusableView.m */; };
 		BED02DE320F41D5A004DFB98 /* ComposeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BED02DE220F41D5A004DFB98 /* ComposeViewController.m */; };
@@ -41,6 +44,11 @@
 		BE3A3F4920F40FFE0073BCDB /* FeedViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FeedViewController.m; sourceTree = "<group>"; };
 		BE62559020F687B9007049F3 /* DetailViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DetailViewController.h; sourceTree = "<group>"; };
 		BE62559120F687B9007049F3 /* DetailViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DetailViewController.m; sourceTree = "<group>"; };
+		BE6255BE20F7DD0E007049F3 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		BE6255C020F7EB85007049F3 /* CameraViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CameraViewController.h; sourceTree = "<group>"; };
+		BE6255C120F7EB85007049F3 /* CameraViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CameraViewController.m; sourceTree = "<group>"; };
+		BE6255C320F7F683007049F3 /* RollViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RollViewController.h; sourceTree = "<group>"; };
+		BE6255C420F7F683007049F3 /* RollViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RollViewController.m; sourceTree = "<group>"; };
 		BE67574720F554B700F278F6 /* PostCollectionCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PostCollectionCell.h; sourceTree = "<group>"; };
 		BE67574820F554B700F278F6 /* PostCollectionCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PostCollectionCell.m; sourceTree = "<group>"; };
 		BE67574A20F55AE900F278F6 /* ProfileCollectionReusableView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ProfileCollectionReusableView.h; sourceTree = "<group>"; };
@@ -61,6 +69,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BE6255BF20F7DD0E007049F3 /* AVFoundation.framework in Frameworks */,
 				35CD4C996B1F038FDE0CCA28 /* libPods-Instagram.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -71,6 +80,7 @@
 		1CD72FC7D67E9035636591C5 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				BE6255BE20F7DD0E007049F3 /* AVFoundation.framework */,
 				D1B26B6F36C5888F91CE9D0E /* libPods-Instagram.a */,
 			);
 			name = Frameworks;
@@ -131,6 +141,10 @@
 				BE67574B20F55AE900F278F6 /* ProfileCollectionReusableView.m */,
 				BE62559020F687B9007049F3 /* DetailViewController.h */,
 				BE62559120F687B9007049F3 /* DetailViewController.m */,
+				BE6255C020F7EB85007049F3 /* CameraViewController.h */,
+				BE6255C120F7EB85007049F3 /* CameraViewController.m */,
+				BE6255C320F7F683007049F3 /* RollViewController.h */,
+				BE6255C420F7F683007049F3 /* RollViewController.m */,
 			);
 			path = Instagram;
 			sourceTree = "<group>";
@@ -228,6 +242,7 @@
 			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-Instagram/Pods-Instagram-resources.sh",
+				"${PODS_ROOT}/DateTools/DateTools/DateTools/DateTools.bundle",
 				"${PODS_CONFIGURATION_BUILD_DIR}/Parse/Parse.bundle",
 				"${PODS_ROOT}/ParseUI/ParseUI/Resources/Localization/en.lproj",
 				"${PODS_ROOT}/ParseUI/ParseUI/Resources/Localization/fr.lproj",
@@ -235,6 +250,7 @@
 			);
 			name = "[CP] Copy Pods Resources";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/DateTools.bundle",
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/Parse.bundle",
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/en.lproj",
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/fr.lproj",
@@ -253,6 +269,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				BE3A3F3F20F4095D0073BCDB /* main.m in Sources */,
+				BE6255C520F7F683007049F3 /* RollViewController.m in Sources */,
 				BE3A3F3120F4095C0073BCDB /* AppDelegate.m in Sources */,
 				BE3A3F4A20F40FFE0073BCDB /* FeedViewController.m in Sources */,
 				BE67574C20F55AE900F278F6 /* ProfileCollectionReusableView.m in Sources */,
@@ -261,6 +278,7 @@
 				BED02DE320F41D5A004DFB98 /* ComposeViewController.m in Sources */,
 				BE62559220F687B9007049F3 /* DetailViewController.m in Sources */,
 				BED02DE620F42254004DFB98 /* ProfileViewController.m in Sources */,
+				BE6255C220F7EB85007049F3 /* CameraViewController.m in Sources */,
 				BE3A3F4720F40FBD0073BCDB /* LoginViewController.m in Sources */,
 				BEE0F2CA20F429A200196328 /* Post.m in Sources */,
 			);

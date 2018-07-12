@@ -12,6 +12,7 @@
 @interface ComposeViewController ()
 @property (weak, nonatomic) IBOutlet UIImageView *picturePostView;
 @property (weak, nonatomic) IBOutlet UITextView *captionContent;
+@property (nonatomic) BOOL useCamera;
 
 @end
 
@@ -21,20 +22,9 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
-    UIImagePickerController *imagePickerVC = [UIImagePickerController new];
-    imagePickerVC.delegate = self;
-    imagePickerVC.allowsEditing = YES;
-    imagePickerVC.sourceType = UIImagePickerControllerSourceTypeCamera;
+
     
-    if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
-        imagePickerVC.sourceType = UIImagePickerControllerSourceTypeCamera;
-    }
-    else {
-        NSLog(@"Camera 🚫 available so we will use photo library instead");
-        imagePickerVC.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
-    }
     
-    [self presentViewController:imagePickerVC animated:YES completion:nil];
     
     
 }
@@ -100,5 +90,46 @@
     // Pass the selected object to the new view controller.
 }
 */
+- (void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:YES];
+    UIImagePickerController *imagePickerVC = [UIImagePickerController new];
+    imagePickerVC.delegate = self;
+    imagePickerVC.allowsEditing = YES;
+    // imagePickerVC.sourceType = UIImagePickerControllerSourceTypeCamera;
+    
+    self.useCamera = false;
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Camera or Photo Roll?" message:@"How would you like to get your picture?" preferredStyle:(UIAlertControllerStyleActionSheet)];
+    // create a cancel action
+    UIAlertAction *cameraAction = [UIAlertAction actionWithTitle:@"Camera" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        // handle cancel response here. Doing nothing will dismiss the view.
+        self.useCamera = true;
+    }];
+    // add the cancel action to the alertController
+    [alert addAction:cameraAction];
+    
+    // create an OK action
+    UIAlertAction *rollAction = [UIAlertAction actionWithTitle:@"Photo Roll" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+           // handle response here.
+           self.useCamera = false;
+    }];
+    // add the OK action to the alert controller
+    [alert addAction:rollAction];
+    [self presentViewController:alert animated:YES completion:^{
+        // optional code for what happens after the alert controller has finished presenting
+        
+        
+        if (self.useCamera && [UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
+            imagePickerVC.sourceType = UIImagePickerControllerSourceTypeCamera;
+        }
+        else {
+            NSLog(@"Camera 🚫 available so we will use photo library instead");
+            imagePickerVC.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+        }
+        
+        
+    }];
+    [self presentViewController:imagePickerVC animated:YES completion:nil];
 
+    
+}
 @end
