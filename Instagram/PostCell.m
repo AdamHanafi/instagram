@@ -31,10 +31,10 @@
     self.postCaptionLabel.text = [NSString stringWithFormat:@"%@ %@", post.author.username, post.caption];
     self.numLikesLabel.text = [NSString stringWithFormat:@"%@ likes", post.likeCount];
     self.usernameLabel.text = post.author.username;
-    self.heartButton.selected = false;
+    self.heartButton.selected = [self.post.likedBy containsObject:PFUser.currentUser.objectId];
     self.bookmarkButton.selected = false;
-    //self.postProfilePicView.file = poster.image;
-    //[self.postProfilePicView loadInBackground];
+    self.postProfilePicView.file = post.author[@"picture"];
+    [self.postProfilePicView loadInBackground];
     self.postProfilePicView.layer.cornerRadius = self.postProfilePicView.frame.size.width/2;
     
     NSDate *date = post.createdAt;
@@ -47,13 +47,14 @@
     if(self.heartButton.selected){
         self.heartButton.selected = false;
         self.post.likeCount = [NSNumber numberWithInteger:([self.post.likeCount intValue] - 1)];
+        [self.post removeObject:PFUser.currentUser.objectId forKey:@"likedBy"];
         [self.post saveInBackground];
 
     } else if(!self.heartButton.selected) {
         self.heartButton.selected = true;
         self.post.likeCount = [NSNumber numberWithInteger:([self.post.likeCount intValue] + 1)];
+        [self.post addUniqueObject:PFUser.currentUser.objectId forKey:@"likedBy"];
         [self.post saveInBackground];
-
     }
     self.numLikesLabel.text = [NSString stringWithFormat:@"%@ likes", self.post.likeCount];
 

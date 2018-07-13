@@ -32,10 +32,10 @@
     self.postCommentLabel.text = [NSString stringWithFormat:@"%@ %@", self.post.author.username, self.post.caption];
     self.postLikeLabel.text = [NSString stringWithFormat:@"%@ likes", self.post.likeCount];
     self.postUserLabel.text = self.post.author.username;
-    self.heartButton.selected = false;
+    self.heartButton.selected = [self.post.likedBy containsObject:PFUser.currentUser.objectId];
     self.bookmarkButton.selected = false;
-    //self.postProfilePicView.file = poster.image;
-    //[self.postProfilePicView loadInBackground];
+    self.postUserImageView.file = self.post.author[@"picture"];
+    [self.postUserImageView loadInBackground];
     self.postUserImageView.layer.cornerRadius = self.postUserImageView.frame.size.width/2;
     NSDate *date = self.post.createdAt;
     NSString *ago = [date shortTimeAgoSinceNow];
@@ -52,11 +52,13 @@
     if(self.heartButton.selected){
         self.heartButton.selected = false;
         self.post.likeCount = [NSNumber numberWithInteger:([self.post.likeCount intValue] - 1)];
+        [self.post removeObject:PFUser.currentUser.objectId forKey:@"likedBy"];
         [self.post saveInBackground];
         
     } else if(!self.heartButton.selected) {
         self.heartButton.selected = true;
         self.post.likeCount = [NSNumber numberWithInteger:([self.post.likeCount intValue] + 1)];
+        [self.post addUniqueObject:PFUser.currentUser.objectId forKey:@"likedBy"];
         [self.post saveInBackground];
         
     }

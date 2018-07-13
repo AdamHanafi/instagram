@@ -73,6 +73,7 @@
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
+    if([sender isKindOfClass:[UICollectionViewCell class]]){
     UICollectionViewCell  *tappedCell = sender;
     NSIndexPath *indexPath = [self.collectionView indexPathForCell:tappedCell];
     Post *post = self.posts[indexPath.item];
@@ -80,6 +81,7 @@
     DetailViewController *detailViewController = [segue destinationViewController];
     
     detailViewController.post = post;
+    }
 }
 
 
@@ -101,12 +103,17 @@
 - (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath{
     ProfileCollectionReusableView *header = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"ProfileCollectionReusableView" forIndexPath:indexPath];
     header.numPostsLabel.text = [NSString stringWithFormat:@"%lu", self.posts.count];
+    header.bioLabel.text = PFUser.currentUser[@"bio"];
+    header.userNameLabel.text = PFUser.currentUser[@"name"];
+    header.profilePicView.file = PFUser.currentUser[@"picture"];
+    [header.profilePicView loadInBackground];
     header.profilePicView.layer.cornerRadius = header.profilePicView.frame.size.width/2;
     return header;
 }
 
 -(void)viewWillAppear:(BOOL)animated{
     self.navigationController.title = [PFUser currentUser].username;
+    [self fetchPosts];
 
 }
 @end

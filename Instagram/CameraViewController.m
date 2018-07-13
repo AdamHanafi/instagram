@@ -19,7 +19,6 @@
 @property (nonatomic) AVCapturePhotoOutput *stillImageOutput;
 @property (nonatomic) AVCaptureVideoPreviewLayer *videoPreviewLayer;
 @property (weak, nonatomic) IBOutlet UITextView *captionContent;
-@property (nonatomic) BOOL frontCamera;
 @end
 
 @implementation CameraViewController
@@ -29,7 +28,6 @@
     // Do any additional setup after loading the view.
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(dismissKeyboard)];
     [self.view addGestureRecognizer:tap];
-    self.frontCamera = false;
 }
 
 -(void)dismissKeyboard {
@@ -64,15 +62,12 @@
     self.session.sessionPreset = AVCaptureSessionPresetPhoto;
     AVCaptureDevice *captureDevice;
     //AVCaptureDevice *backCamera = [AVCaptureDevice defaultDeviceWithMediaType:AVMediaTypeVideo];
-    if(self.frontCamera){
-        captureDevice = [self frontFacingCameraIfAvailable];
-    } else {
-        captureDevice = [self backCamera];
-        
-    }
+    captureDevice = [self backCamera];
     
     NSError *error;
     AVCaptureDeviceInput *input = [AVCaptureDeviceInput deviceInputWithDevice:captureDevice error:&error];
+    [self.session removeInput:input];
+
     if (error) {
         NSLog(@"%@", error.localizedDescription);
     }
@@ -139,8 +134,24 @@
 
 - (IBAction)cameraSwitch:(id)sender {
     [self.session stopRunning];
-    self.frontCamera = !self.frontCamera;
-    [self loadCamera];
+    AVCaptureDeviceInput *input = self.session.inputs.firstObject;
+        
+    AVCaptureDevice *captureDevice = nil;
+        
+    if(input.device.position == AVCaptureDevicePositionBack){
+        captureDevice = [self frontFacingCameraIfAvailable];
+    } else {
+        captureDevice = [self backCamera];
+    }
+        
+    // Remove previous camera, and add new
+    [self.session removeInput:input];
+    NSError *error = nil;
+        
+    input = [AVCaptureDeviceInput deviceInputWithDevice:captureDevice error:&error];
+    if (!input) return;
+    [self.session addInput:input];
+    [self.session startRunning];
 }
 
 

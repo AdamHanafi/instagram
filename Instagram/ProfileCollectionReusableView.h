@@ -12,7 +12,7 @@
 #import <Parse/Parse.h>
 
 @interface ProfileCollectionReusableView : UICollectionReusableView
-@property (weak, nonatomic) IBOutlet UIImageView *profilePicView;
+@property (weak, nonatomic) IBOutlet PFImageView *profilePicView;
 @property (weak, nonatomic) IBOutlet UILabel *numPostsLabel;
 @property (weak, nonatomic) IBOutlet UILabel *userNameLabel;
 @property (weak, nonatomic) IBOutlet UILabel *bioLabel;

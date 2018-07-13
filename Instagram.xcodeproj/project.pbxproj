@@ -21,6 +21,7 @@
 		BE6255C520F7F683007049F3 /* RollViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BE6255C420F7F683007049F3 /* RollViewController.m */; };
 		BE67574920F554B700F278F6 /* PostCollectionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BE67574820F554B700F278F6 /* PostCollectionCell.m */; };
 		BE67574C20F55AE900F278F6 /* ProfileCollectionReusableView.m in Sources */ = {isa = PBXBuildFile; fileRef = BE67574B20F55AE900F278F6 /* ProfileCollectionReusableView.m */; };
+		BE8FBF4320F86DE50041C7F4 /* UpdateProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BE8FBF4220F86DE50041C7F4 /* UpdateProfileViewController.m */; };
 		BED02DE320F41D5A004DFB98 /* ComposeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BED02DE220F41D5A004DFB98 /* ComposeViewController.m */; };
 		BED02DE620F42254004DFB98 /* ProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BED02DE520F42254004DFB98 /* ProfileViewController.m */; };
 		BEE0F2CA20F429A200196328 /* Post.m in Sources */ = {isa = PBXBuildFile; fileRef = BEE0F2C920F429A200196328 /* Post.m */; };
@@ -53,6 +54,8 @@
 		BE67574820F554B700F278F6 /* PostCollectionCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PostCollectionCell.m; sourceTree = "<group>"; };
 		BE67574A20F55AE900F278F6 /* ProfileCollectionReusableView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ProfileCollectionReusableView.h; sourceTree = "<group>"; };
 		BE67574B20F55AE900F278F6 /* ProfileCollectionReusableView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ProfileCollectionReusableView.m; sourceTree = "<group>"; };
+		BE8FBF4120F86DE50041C7F4 /* UpdateProfileViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UpdateProfileViewController.h; sourceTree = "<group>"; };
+		BE8FBF4220F86DE50041C7F4 /* UpdateProfileViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UpdateProfileViewController.m; sourceTree = "<group>"; };
 		BED02DE120F41D5A004DFB98 /* ComposeViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ComposeViewController.h; sourceTree = "<group>"; };
 		BED02DE220F41D5A004DFB98 /* ComposeViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ComposeViewController.m; sourceTree = "<group>"; };
 		BED02DE420F42254004DFB98 /* ProfileViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ProfileViewController.h; sourceTree = "<group>"; };
@@ -145,6 +148,8 @@
 				BE6255C120F7EB85007049F3 /* CameraViewController.m */,
 				BE6255C320F7F683007049F3 /* RollViewController.h */,
 				BE6255C420F7F683007049F3 /* RollViewController.m */,
+				BE8FBF4120F86DE50041C7F4 /* UpdateProfileViewController.h */,
+				BE8FBF4220F86DE50041C7F4 /* UpdateProfileViewController.m */,
 			);
 			path = Instagram;
 			sourceTree = "<group>";
@@ -279,6 +284,7 @@
 				BE62559220F687B9007049F3 /* DetailViewController.m in Sources */,
 				BED02DE620F42254004DFB98 /* ProfileViewController.m in Sources */,
 				BE6255C220F7EB85007049F3 /* CameraViewController.m in Sources */,
+				BE8FBF4320F86DE50041C7F4 /* UpdateProfileViewController.m in Sources */,
 				BE3A3F4720F40FBD0073BCDB /* LoginViewController.m in Sources */,
 				BEE0F2CA20F429A200196328 /* Post.m in Sources */,
 			);
