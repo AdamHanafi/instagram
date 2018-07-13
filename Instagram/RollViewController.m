@@ -13,6 +13,7 @@
 @interface RollViewController ()
 @property (weak, nonatomic) IBOutlet UITextView *captionContent;
 @property (weak, nonatomic) IBOutlet UIImageView *picturePostView;
+@property (weak, nonatomic) IBOutlet UIButton *pickPickButton;
 
 @end
 
@@ -22,6 +23,7 @@
     // Do any additional setup after loading the view.
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(dismissKeyboard)];
     [self.view addGestureRecognizer:tap];
+    self.pickPickButton.layer.cornerRadius = self.pickPickButton.frame.size.width / 10;
 }
 
 -(void)dismissKeyboard {

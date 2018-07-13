@@ -27,7 +27,17 @@
     self.nameField.text = PFUser.currentUser[@"name"];
     self.usernameField.text = PFUser.currentUser.username;
     self.bioField.text = PFUser.currentUser[@"bio"];
+    self.profilePicView.layer.cornerRadius = self.profilePicView.frame.size.width/2;
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(dismissKeyboard)];
+    [self.view addGestureRecognizer:tap];
 }
+
+-(void)dismissKeyboard {
+    [self.nameField endEditing:YES];
+    [self.usernameField endEditing:YES];
+    [self.bioField endEditing:YES];
+}
+
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

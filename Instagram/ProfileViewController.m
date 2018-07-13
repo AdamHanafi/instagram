@@ -28,6 +28,7 @@
     self.collectionView.delegate = self;
     self.collectionView.dataSource = self;
     self.navigationItem.title = [PFUser currentUser].username;
+    self.navigationItem.backBarButtonItem.title = @"My Profile";
     CGFloat itemWidth = self.collectionView.frame.size.width / 3;
     UICollectionViewFlowLayout *layout = (UICollectionViewFlowLayout *)self.collectionView.collectionViewLayout;
     layout.itemSize = CGSizeMake(itemWidth, itemWidth);
@@ -108,6 +109,7 @@
     header.profilePicView.file = PFUser.currentUser[@"picture"];
     [header.profilePicView loadInBackground];
     header.profilePicView.layer.cornerRadius = header.profilePicView.frame.size.width/2;
+    header.editProfileButton.layer.cornerRadius = header.editProfileButton.frame.size.width / 12;
     return header;
 }
 

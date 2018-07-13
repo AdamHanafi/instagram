@@ -16,5 +16,6 @@
 @property (weak, nonatomic) IBOutlet UILabel *numPostsLabel;
 @property (weak, nonatomic) IBOutlet UILabel *userNameLabel;
 @property (weak, nonatomic) IBOutlet UILabel *bioLabel;
+@property (weak, nonatomic) IBOutlet UIButton *editProfileButton;
 
 @end
