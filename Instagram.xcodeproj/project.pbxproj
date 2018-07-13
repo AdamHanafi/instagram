@@ -119,6 +119,9 @@
 		BE3A3F2E20F4095C0073BCDB /* Instagram */ = {
 			isa = PBXGroup;
 			children = (
+				BE8FBF4620F90BAF0041C7F4 /* Models */,
+				BE8FBF4520F90B990041C7F4 /* Views */,
+				BE8FBF4420F90AF80041C7F4 /* View Controllers */,
 				BE3A3F2F20F4095C0073BCDB /* AppDelegate.h */,
 				BE3A3F3020F4095C0073BCDB /* AppDelegate.m */,
 				BE3A3F3520F4095C0073BCDB /* Main.storyboard */,
@@ -126,6 +129,13 @@
 				BE3A3F3A20F4095D0073BCDB /* LaunchScreen.storyboard */,
 				BE3A3F3D20F4095D0073BCDB /* Info.plist */,
 				BE3A3F3E20F4095D0073BCDB /* main.m */,
+			);
+			path = Instagram;
+			sourceTree = "<group>";
+		};
+		BE8FBF4420F90AF80041C7F4 /* View Controllers */ = {
+			isa = PBXGroup;
+			children = (
 				BE3A3F4520F40FBD0073BCDB /* LoginViewController.h */,
 				BE3A3F4620F40FBD0073BCDB /* LoginViewController.m */,
 				BE3A3F4820F40FFE0073BCDB /* FeedViewController.h */,
@@ -134,14 +144,6 @@
 				BED02DE220F41D5A004DFB98 /* ComposeViewController.m */,
 				BED02DE420F42254004DFB98 /* ProfileViewController.h */,
 				BED02DE520F42254004DFB98 /* ProfileViewController.m */,
-				BEE0F2C820F429A200196328 /* Post.h */,
-				BEE0F2C920F429A200196328 /* Post.m */,
-				BEE0F2D020F42D7400196328 /* PostCell.h */,
-				BEE0F2D120F42D7400196328 /* PostCell.m */,
-				BE67574720F554B700F278F6 /* PostCollectionCell.h */,
-				BE67574820F554B700F278F6 /* PostCollectionCell.m */,
-				BE67574A20F55AE900F278F6 /* ProfileCollectionReusableView.h */,
-				BE67574B20F55AE900F278F6 /* ProfileCollectionReusableView.m */,
 				BE62559020F687B9007049F3 /* DetailViewController.h */,
 				BE62559120F687B9007049F3 /* DetailViewController.m */,
 				BE6255C020F7EB85007049F3 /* CameraViewController.h */,
@@ -151,7 +153,29 @@
 				BE8FBF4120F86DE50041C7F4 /* UpdateProfileViewController.h */,
 				BE8FBF4220F86DE50041C7F4 /* UpdateProfileViewController.m */,
 			);
-			path = Instagram;
+			path = "View Controllers";
+			sourceTree = "<group>";
+		};
+		BE8FBF4520F90B990041C7F4 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				BEE0F2D020F42D7400196328 /* PostCell.h */,
+				BEE0F2D120F42D7400196328 /* PostCell.m */,
+				BE67574720F554B700F278F6 /* PostCollectionCell.h */,
+				BE67574820F554B700F278F6 /* PostCollectionCell.m */,
+				BE67574A20F55AE900F278F6 /* ProfileCollectionReusableView.h */,
+				BE67574B20F55AE900F278F6 /* ProfileCollectionReusableView.m */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		BE8FBF4620F90BAF0041C7F4 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				BEE0F2C820F429A200196328 /* Post.h */,
+				BEE0F2C920F429A200196328 /* Post.m */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
