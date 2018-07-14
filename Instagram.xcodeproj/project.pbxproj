@@ -22,6 +22,7 @@
 		BE67574920F554B700F278F6 /* PostCollectionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BE67574820F554B700F278F6 /* PostCollectionCell.m */; };
 		BE67574C20F55AE900F278F6 /* ProfileCollectionReusableView.m in Sources */ = {isa = PBXBuildFile; fileRef = BE67574B20F55AE900F278F6 /* ProfileCollectionReusableView.m */; };
 		BE8FBF4320F86DE50041C7F4 /* UpdateProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BE8FBF4220F86DE50041C7F4 /* UpdateProfileViewController.m */; };
+		BEA5FD5A20F95B9E005B79F5 /* OtherUsersViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BEA5FD5920F95B9E005B79F5 /* OtherUsersViewController.m */; };
 		BED02DE320F41D5A004DFB98 /* ComposeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BED02DE220F41D5A004DFB98 /* ComposeViewController.m */; };
 		BED02DE620F42254004DFB98 /* ProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BED02DE520F42254004DFB98 /* ProfileViewController.m */; };
 		BEE0F2CA20F429A200196328 /* Post.m in Sources */ = {isa = PBXBuildFile; fileRef = BEE0F2C920F429A200196328 /* Post.m */; };
@@ -56,6 +57,8 @@
 		BE67574B20F55AE900F278F6 /* ProfileCollectionReusableView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ProfileCollectionReusableView.m; sourceTree = "<group>"; };
 		BE8FBF4120F86DE50041C7F4 /* UpdateProfileViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UpdateProfileViewController.h; sourceTree = "<group>"; };
 		BE8FBF4220F86DE50041C7F4 /* UpdateProfileViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UpdateProfileViewController.m; sourceTree = "<group>"; };
+		BEA5FD5820F95B9E005B79F5 /* OtherUsersViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OtherUsersViewController.h; sourceTree = "<group>"; };
+		BEA5FD5920F95B9E005B79F5 /* OtherUsersViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OtherUsersViewController.m; sourceTree = "<group>"; };
 		BED02DE120F41D5A004DFB98 /* ComposeViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ComposeViewController.h; sourceTree = "<group>"; };
 		BED02DE220F41D5A004DFB98 /* ComposeViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ComposeViewController.m; sourceTree = "<group>"; };
 		BED02DE420F42254004DFB98 /* ProfileViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ProfileViewController.h; sourceTree = "<group>"; };
@@ -152,6 +155,8 @@
 				BE6255C420F7F683007049F3 /* RollViewController.m */,
 				BE8FBF4120F86DE50041C7F4 /* UpdateProfileViewController.h */,
 				BE8FBF4220F86DE50041C7F4 /* UpdateProfileViewController.m */,
+				BEA5FD5820F95B9E005B79F5 /* OtherUsersViewController.h */,
+				BEA5FD5920F95B9E005B79F5 /* OtherUsersViewController.m */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
@@ -309,6 +314,7 @@
 				BED02DE620F42254004DFB98 /* ProfileViewController.m in Sources */,
 				BE6255C220F7EB85007049F3 /* CameraViewController.m in Sources */,
 				BE8FBF4320F86DE50041C7F4 /* UpdateProfileViewController.m in Sources */,
+				BEA5FD5A20F95B9E005B79F5 /* OtherUsersViewController.m in Sources */,
 				BE3A3F4720F40FBD0073BCDB /* LoginViewController.m in Sources */,
 				BEE0F2CA20F429A200196328 /* Post.m in Sources */,
 			);

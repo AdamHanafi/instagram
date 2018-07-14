@@ -11,6 +11,7 @@
 #import <Parse/Parse.h>
 #import <ParseUI/ParseUI.h>
 #import "Post.h"
+#import "MBProgressHUD.h"
 
 @interface CameraViewController () <AVCapturePhotoCaptureDelegate>
 @property (weak, nonatomic) IBOutlet UIView *previewView;
@@ -167,7 +168,7 @@
 
 - (IBAction)clickedPost:(id)sender {
     UIImage *editedImage = [self fixOrientationOfImage:self.captureImageView.image];
-    
+    [MBProgressHUD showHUDAddedTo:self.view animated:true];
     [Post postUserImage:editedImage withCaption:self.captionContent.text withCompletion:^(BOOL succeeded, NSError * _Nullable error) {
         NSLog(@"Posting...");
         if(error){
@@ -176,8 +177,12 @@
         else{
             NSLog(@"Picture successfully posted!");
         }
+        [MBProgressHUD hideHUDForView:self.view animated:true];
+
     }];
     [self dismissViewControllerAnimated:YES completion:nil];
+    self.captionContent.text = @"";
+    self.captureImageView.image = [UIImage imageNamed:@"image_placeholder"];
    // UIViewController *parentView = self.sender;
     //[parentView.tabBarController setSelectedIndex:0];
 }

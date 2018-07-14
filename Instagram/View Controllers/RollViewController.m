@@ -10,6 +10,8 @@
 #import "Post.h"
 #import <Parse/Parse.h>
 #import <ParseUI/ParseUI.h>
+#import "MBProgressHUD.h"
+
 @interface RollViewController ()
 @property (weak, nonatomic) IBOutlet UITextView *captionContent;
 @property (weak, nonatomic) IBOutlet UIImageView *picturePostView;
@@ -75,6 +77,7 @@
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 - (IBAction)clickedPost:(id)sender {
+    [MBProgressHUD showHUDAddedTo:self.view animated:true];
     [Post postUserImage:self.picturePostView.image withCaption:self.captionContent.text withCompletion:^(BOOL succeeded, NSError * _Nullable error) {
         NSLog(@"Posting...");
         if(error){
@@ -83,8 +86,12 @@
         else{
             NSLog(@"Picture successfully posted!");
         }
+        [MBProgressHUD hideHUDForView:self.view animated:true];
+
     }];
     //[self dismissViewControllerAnimated:YES completion:nil];
+    self.captionContent.text = @"";
+    self.picturePostView.image = [UIImage imageNamed:@"image_placeholder"];
     [self.tabBarController setSelectedIndex:0];
 
 }

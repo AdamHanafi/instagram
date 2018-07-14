@@ -47,7 +47,7 @@
     PFQuery *query = [PFQuery queryWithClassName:@"Post"];
     //[query whereKey:@"likesCount" greaterThan:@100];
     
-    query.limit = 20;
+    //query.limit = 20;
     [query orderByDescending:@"createdAt"];
     [query includeKey:@"author"];
     [query whereKey:@"author" equalTo:[PFUser currentUser]];

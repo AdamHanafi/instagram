@@ -11,7 +11,6 @@
 #import <Parse/Parse.h>
 #import <ParseUI/ParseUI.h>
 
-
 @interface PostCell : UITableViewCell
 @property (strong, nonatomic) Post *post;
 @property (weak, nonatomic) IBOutlet PFImageView *postImageView;
@@ -22,5 +21,4 @@
 @property (weak, nonatomic) IBOutlet UIButton *heartButton;
 @property (weak, nonatomic) IBOutlet UILabel *numLikesLabel;
 @property (weak, nonatomic) IBOutlet UILabel *timeAgoLabel;
-
 @end

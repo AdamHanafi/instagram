@@ -66,7 +66,7 @@
 }
 - (IBAction)saveProfile:(id)sender {
     PFUser.currentUser[@"name"] = self.nameField.text;
-    PFUser.currentUser[@"profile"] = [PFFile fileWithData:UIImagePNGRepresentation(self.profilePicView.image)];
+    PFUser.currentUser[@"picture"] = [PFFile fileWithData:UIImagePNGRepresentation(self.profilePicView.image)];
     PFUser.currentUser[@"bio"] = self.bioField.text;
     PFUser.currentUser.username = self.usernameField.text;
     [PFUser.currentUser saveInBackground];
